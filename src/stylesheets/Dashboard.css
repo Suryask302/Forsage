@@ -1,0 +1,49 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  font-family: "Poppins", sans-serif;
+}
+h2,
+p,
+h3 {
+  font-weight: 600;
+}
+
+.dashBoardBTN {
+  background: linear-gradient(45deg, #d430ff, #6527ff);
+  border-color: transparent;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: 500;
+  padding: 5px 58px;
+}
+
+.cardDash {
+  background: #261643;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.row {
+  padding: 15px;
+}
+
+.col-lg-2 {
+  width: 20%;
+}
+
+body {
+  background-image: url(../images/dashboardimgs/bg.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 600px) {
+  .col-lg-2 {
+    width: 100%;
+  }
+}

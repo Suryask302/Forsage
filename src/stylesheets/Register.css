@@ -1,0 +1,41 @@
+body {
+  margin: 8% 0 !important;
+  background-image: url('../images/registerImgs/bg.svg');
+  background-repeat: no-repeat;
+}
+.card {
+  text-align: center;
+  background-color: transparent !important;
+}
+.sub-card {
+  padding: 45px 30px 30px;
+  height: 270px;
+}
+.sub-card1 {
+  padding: 28px;
+}
+button {
+  border: 10% !important;
+  border-radius: 20px !important;
+  padding: 5px 15px;
+  color: #430a99;
+  background: #fff;
+  font-weight: 500;
+  border-color: #f0f8ff00;
+}
+p {
+  font-size: 11px;
+  font-weight: 500;
+}
+.col-md-4 img {
+  width: 43px;
+  margin-bottom: 10px;
+}
+@media only screen and (max-width: 600px) {
+  .col-md-5 {
+    padding: 30px !important;
+  }
+  .col-md-4 {
+    width: 33% !important;
+  }
+}
