@@ -7,11 +7,13 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import axios from 'axios'
 import data from '../../utils/data'
-let user = JSON.parse(localStorage.getItem('user'))
+import { useNavigate } from 'react-router-dom'
 
 const Package20 = () => {
 
     let [isBuyed, setIsbuyed] = useState(false)
+    const [user, setUser] = useState(null)
+    const navigate = useNavigate()
 
     const buyPackage = async () => {
         setIsbuyed(true)
@@ -20,6 +22,8 @@ const Package20 = () => {
     }
 
     useEffect(() => {
+
+        setUser(JSON.parse(localStorage.getItem('user')))
 
         async function getData() {
             try {
@@ -40,7 +44,8 @@ const Package20 = () => {
         }
         getData()
 
-    })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     console.log(data)
 
     return (
@@ -75,8 +80,6 @@ const Package20 = () => {
 
                 <div style={{ paddingBottom: "10px" }}>
 
-
-
                     {
 
                         data.map(((e, i) => (
@@ -93,13 +96,20 @@ const Package20 = () => {
 
                                 }}>
                                     <span style={{ fontSize: '1rem' }}> custID - {e.CusId} </span>
-                                    <span style={{ fontSize: '0.9rem' }}> status - {e.IsActive ? "Active" : "Inactive"} </span>
-                                    <span style={{ fontSmooth: 'true' }}> {e.NoOfRegistration} </span>
+                                    <span style={{ fontSize: '1rem' }}> status - {e.IsActive ? "Active" : "Inactive"} </span>
+                                    <span style={{fontSize: '1rem', fontSmooth: 'true' }}> No Of Registration - {e.NoOfRegistration} </span>
                                 </div>
 
                             } >
                                 <img
                                     key={i}
+                                    onClick={() => {
+                                        navigate('/userInfo', {
+                                            state: {
+                                                id: e['CusId']
+                                            }
+                                        })
+                                    }}
                                     src={e.IsActive ? greenDot : blueDot}
                                     alt=""
                                     style={{
@@ -113,6 +123,7 @@ const Package20 = () => {
 
 
                     }
+
                 </div>
 
 

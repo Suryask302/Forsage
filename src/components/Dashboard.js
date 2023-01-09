@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../stylesheets/Dashboard.css'
 import blueDot from '../images/dashboardimgs/Ellipse_blue.svg'
 import greenDot from '../images/dashboardimgs/Ellipse_green.svg'
@@ -6,10 +6,32 @@ import logoImg from '../images/dashboardimgs/logo.svg'
 import Package20 from './micros/Package20'
 import Package50 from './micros/Package50'
 import Package100 from './micros/Package100.js'
+import { useNavigate } from 'react-router-dom'
+
+const truncateString = (str) => `${str.slice(0, 4)}.....${str.slice(str.length - 4, str.length)}`
 
 
 
 const Dashboard = () => {
+
+    const navigate = useNavigate()
+    const [user, setUser] = useState(null)
+    
+    const handleLogout = () => { 
+        localStorage.removeItem('user')
+        navigate('/login')
+    }
+
+    useEffect(() => {
+
+        if (!JSON.parse(localStorage.getItem('user'))) {
+            navigate('/login')
+        }
+        setUser(JSON.parse(localStorage.getItem('user')))
+
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
 
@@ -18,13 +40,14 @@ const Dashboard = () => {
                 <div style={{ marginBottom: "18px" }}>
                     <div className="cardDash" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                         <img src={logoImg} alt="" width="100" />
-                        <h2 style={{ color: "#00c21a" }}>ID 3543</h2>
+                        <h2 style={{ color: "#00c21a" }}> ID {user && truncateString(user['userName'])}</h2>
                         <p style={{ color: "#fff" }}>Lorem ipsum</p>
                         <button className='dashBoardBTN'>100 USDT</button>
                     </div>
                 </div>
                 <div style={{ marginBottom: "18px" }}>
                     <div className="cardDash" style={{ flexDirection: "column", alignItems: "center" }}>
+
                         <div
                             style={{ border: "1px solid #ee4cff", width: "100%", padding: "15px", borderRadius: "8px", textAlign: "center", marginBottom: "15px" }}>
                             <p style={{ color: "#fff" }}>Deposit Wallet</p>
@@ -37,6 +60,7 @@ const Dashboard = () => {
                             <h2 style={{ color: "#ffaa00" }}>Tbac: 10</h2>
                             <h3 style={{ color: "#fff" }}>USD 600</h3>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -86,6 +110,14 @@ const Dashboard = () => {
                         <div className="col-lg-2" style={{ display: "flex", alignItems: "flex-start" }}>
                             <img src={blueDot} alt="" width="22px" />
                             <p style={{ color: "#fff", marginLeft: "10px" }}>Legends4</p>
+                        </div>
+
+                    </div>
+
+                    <div className="row" style={{ justifyContent: "space-evenly" }}>
+
+                        <div className="col-lg-2" style={{ display: "flex", alignItems: "flex-start" }}>
+                            <button className='dashBoardBTN' onClick={handleLogout}> Logout </button>
                         </div>
 
                     </div>

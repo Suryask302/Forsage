@@ -7,15 +7,11 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import axios from 'axios'
 import data from '../../utils/data'
-let user = JSON.parse(localStorage.getItem('user'))
-
-
-
-
 
 const Package50 = () => {
 
     let [isBuyed, setIsbuyed] = useState(false)
+    const [user, setUser] = useState(null)
 
     const buyPackage = async () => {
         setIsbuyed(true)
@@ -24,6 +20,8 @@ const Package50 = () => {
     }
 
     useEffect(() => {
+
+        setUser(JSON.parse(localStorage.getItem('user')))
 
         async function getData() {
             try {
@@ -43,8 +41,9 @@ const Package50 = () => {
 
         }
         getData()
-
-    })
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
     console.log(data)
 
     return (
@@ -67,6 +66,7 @@ const Package50 = () => {
                     justifyContent: "space-around"
 
                 }}>
+
                     {
                         user &&
                         <Tippy content={user.userName}>

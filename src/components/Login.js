@@ -12,10 +12,10 @@ import axios from 'axios';
 let w3
 
 const Login = () => {
+
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [loading, setLoading] = useState(false)
     const [autoloader, setAutoloader] = useState(false)
-    const [acc, setAcc] = useState([])
     const [err, setError] = useState(null)
 
     const navigate = useNavigate()
@@ -76,8 +76,6 @@ const Login = () => {
                 }, 5000)
 
             }
-
-            setAcc(accounts[0])
 
             let result = await axios({
                 method: `post`,

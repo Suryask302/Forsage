@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import RegistrationForm from './components/RegistrationForm';
 import Dashboard from './components/Dashboard';
 import Protected from './components/Protected';
+import UserInfo from './components/UserInfo';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route element={<Protected />}>
           <Route path='/' element={<Dashboard />} />
+          <Route path='/userInfo' element={<UserInfo />} />
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
